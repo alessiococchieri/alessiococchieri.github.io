@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/* Fix CV date/location column alignment: widen from 2/12 to 3/12 columns */
+@media (min-width: 576px) {
+  .date-column {
+    flex: 0 0 22%;
+    max-width: 22%;
+  }
+  .date-column + div {
+    flex: 0 0 78%;
+    max-width: 78%;
+  }
+}
+
+/* Allow location text to wrap inside the narrow column */
+/* Higher specificity (0,2,1) overrides al-folio-cv.css's p.location (0,1,1) */
+.date-column p.location {
+  white-space: normal;
+}
