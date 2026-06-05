@@ -18,18 +18,18 @@ The site owner is an NLP PhD researcher at UniboNLP, University of Bologna, work
 
 When asked to update the site content, edit these files:
 
-| Content type         | File(s)                                         |
-| -------------------- | ----------------------------------------------- |
-| Homepage bio         | `_pages/about.md`                               |
-| Publications list    | `_bibliography/papers.bib`                      |
-| CV / resume (JSON)   | `assets/json/resume.json`                       |
-| CV page (RenderCV)   | `assets/rendercv/` + `_pages/cv.md`             |
-| News / announcements | `_news/*.md`                                    |
-| Blog posts           | `_posts/*.md`                                   |
-| Projects             | `_projects/*.md`                                |
-| Teaching             | `_teachings/*.md`                               |
+| Content type         | File(s)                                                      |
+| -------------------- | ------------------------------------------------------------ |
+| Homepage bio         | `_pages/about.md`                                            |
+| Publications list    | `_bibliography/papers.bib`                                   |
+| CV / resume (JSON)   | `assets/json/resume.json`                                    |
+| CV page (RenderCV)   | `assets/rendercv/` + `_pages/cv.md`                          |
+| News / announcements | `_news/*.md`                                                 |
+| Blog posts           | `_posts/*.md`                                                |
+| Projects             | `_projects/*.md`                                             |
+| Teaching             | `_teachings/*.md`                                            |
 | Site-wide settings   | `_config.yml` (name, social links, feature flags, analytics) |
-| Social links / theme | `_config.yml` under `social:` / `theme:` blocks |
+| Social links / theme | `_config.yml` under `social:` / `theme:` blocks              |
 
 > **Note:** `assets/json/resume.json` currently contains Albert Einstein placeholder data and needs to be populated with Alessio's actual CV data.
 
@@ -84,33 +84,33 @@ Feature gating is two-layered: site-wide flags in `_config.yml` (e.g. `enable_ma
 
 Two lists must stay in sync when adding or removing a plugin: `Gemfile` (pinned version) and `_config.yml`'s `plugins:` list.
 
-| Feature               | Gem                    |
-| --------------------- | ---------------------- |
-| Search (Cmd-K)        | `al_search`            |
-| Comments              | `al_comments`          |
-| Cookie consent        | `al_cookie`            |
-| Icons (FA/Academicons)| `al_icons`             |
-| Analytics             | `al_analytics`         |
-| Math (MathJax/TikZ)   | `al_math`              |
-| Charts                | `al_charts`            |
-| Image tools           | `al_img_tools`         |
-| Newsletter            | `al_newsletter`        |
-| CV layout             | `al_folio_cv`          |
-| Distill layout        | `al_folio_distill`     |
-| Citation badges       | `al_citations`         |
-| External posts        | `al_ext_posts`         |
-| Bootstrap compat      | `al_folio_bootstrap_compat` |
-| Upgrade/audit CLI     | `al_folio_upgrade`     |
+| Feature                | Gem                         |
+| ---------------------- | --------------------------- |
+| Search (Cmd-K)         | `al_search`                 |
+| Comments               | `al_comments`               |
+| Cookie consent         | `al_cookie`                 |
+| Icons (FA/Academicons) | `al_icons`                  |
+| Analytics              | `al_analytics`              |
+| Math (MathJax/TikZ)    | `al_math`                   |
+| Charts                 | `al_charts`                 |
+| Image tools            | `al_img_tools`              |
+| Newsletter             | `al_newsletter`             |
+| CV layout              | `al_folio_cv`               |
+| Distill layout         | `al_folio_distill`          |
+| Citation badges        | `al_citations`              |
+| External posts         | `al_ext_posts`              |
+| Bootstrap compat       | `al_folio_bootstrap_compat` |
+| Upgrade/audit CLI      | `al_folio_upgrade`          |
 
 ## CI gates
 
-| Workflow                | What it checks                                            |
-| ----------------------- | --------------------------------------------------------- |
-| `unit-tests.yml`        | Style contract + all five integration scripts             |
-| `visual-regression.yml` | Playwright chromium+webkit against baseline               |
-| `upgrade-check.yml`     | `al-folio upgrade audit`                                  |
+| Workflow                | What it checks                                                  |
+| ----------------------- | --------------------------------------------------------------- |
+| `unit-tests.yml`        | Style contract + all five integration scripts                   |
+| `visual-regression.yml` | Playwright chromium+webkit against baseline                     |
+| `upgrade-check.yml`     | `al-folio upgrade audit`                                        |
 | `prettier.yml`          | Prettier (`@shopify/prettier-plugin-liquid`, `printWidth: 150`) |
-| `deploy.yml`            | Production build and GitHub Pages push                    |
+| `deploy.yml`            | Production build and GitHub Pages push                          |
 
 Run `npm run lint:prettier` before pushing. The style contract (`npm run lint:style-contract`) will fail CI if starter files stray into gem-owned territory (adding `build:css` npm scripts, owning `_includes/`, `_layouts/`, `_sass/`, etc.).
 
