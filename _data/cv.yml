@@ -1,56 +1,56 @@
 cv:
   name: Alessio Cocchieri
-  label: PhD Student in Natural Language Processing
-  email: alessiococchieri.ac@gmail.com
+  headline: NLP PhD Researcher · UniboNLP · University of Bologna
   location: Bologna, Italy
-  image: ""
-  summary: >
-    Last-year NLP PhD candidate (ending Nov 2026) at UniboNLP, University of Bologna,
-    with 9+ publications at ACL, EMNLP, NAACL, and EACL. I specialize in LLM evaluation
-    and knowledge distillation for low-resource NLP, with applications to high-stakes
-    domains like medicine. Active reviewer for ARR and top-tier ML conferences like NeurIPS.
-
+  email: alessiococchieri.ac@gmail.com
   social_networks:
+    - network: LinkedIn
+      username: alessio-cocchieri-8aa082271
     - network: GitHub
       username: alessiococchieri
 
   sections:
+    About Me:
+      - Last-year NLP PhD candidate (ending Nov 2026) at [UniboNLP](https://disi-unibo-nlp.github.io/),
+        with 9+ publications at ACL, EMNLP, NAACL, and EACL. I specialize in LLM evaluation and
+        knowledge distillation for low-resource NLP, with applications to high-stakes domains like
+        medicine. Active reviewer for ARR and top-tier ML conferences like NeurIPS.
+
     Education:
       - institution: University of Bologna
-        location: Bologna, Italy
-        url: https://www.unibo.it/
         area: Natural Language Processing
-        studyType: PhD
+        degree: PhD
         start_date: 2023-11
         end_date: present
+        location: Bologna, Italy
         highlights:
           - "Focus: LLMs, RAG, Information Extraction, Benchmarking, Low-resource NLP"
           - "Supervisor: Prof. Gianluca Moro — Research Group: UniboNLP"
 
       - institution: University of Bologna
-        location: Bologna, Italy
-        url: https://www.unibo.it/
         area: Artificial Intelligence
-        studyType: MSc
+        degree: MSc
         start_date: 2021-09
         end_date: 2023-12
-        score: "110/110 with honors"
+        location: Bologna, Italy
+        highlights:
+          - "Grade: 110/110 with honors"
 
       - institution: University of Bologna
-        location: Bologna, Italy
-        url: https://www.unibo.it/
         area: Computer Science
-        studyType: BSc
+        degree: BSc
         start_date: 2018-09
         end_date: 2021-07
-        score: "110/110 with honors"
+        location: Bologna, Italy
+        highlights:
+          - "Grade: 110/110 with honors"
 
     Experience:
       - company: IBM Research
         position: Research Scientist Internship (PhD Intern)
-        location: Dublin, Ireland
         start_date: 2026-03
         end_date: 2026-05
+        location: Dublin, Ireland
         summary: "Natural Language Processing — LLM Factuality"
         highlights:
           - Created a novel benchmark for multimodal scientific fact-checking, targeting LLM long-form generation
@@ -59,9 +59,9 @@ cv:
 
       - company: IBM Research
         position: Research Scientist Internship (Master Thesis)
-        location: Dublin, Ireland
         start_date: 2023-03
         end_date: 2023-05
+        location: Dublin, Ireland
         summary: "Natural Language Processing — Named Entity Recognition"
         highlights:
           - Leveraged LLM distillation to improve smaller-sized models for zero-shot NER
@@ -71,72 +71,65 @@ cv:
     Publications:
       - title: "LLMs (Almost) Never Abstain Under Medical Uncertainty"
         authors:
-          - Alessio Cocchieri
+          - "*Alessio Cocchieri*"
           - et al.
-        publisher: ACL 2026 (Main)
-        releaseDate: 2026
+        journal: ACL 2026 (Main)
+        date: "2026"
         summary: "We introduce MedQAbstain, a benchmark for medical abstention under uncertainty, revealing that state-of-the-art LLMs systematically overcommit, rarely abstaining even when the question itself is hidden."
 
       - title: "ReMedQA: Are We Done With Medical Multiple-Choice Benchmarks?"
         authors:
-          - Alessio Cocchieri
+          - "*Alessio Cocchieri*"
           - et al.
-        publisher: EACL 2026 (Main)
-        releaseDate: 2026
+        journal: EACL 2026 (Main)
+        date: "2026"
         summary: "We show that high LLM accuracy in medical MCQA masks severe inconsistency. We propose novel metrics to evaluate true reliability across MCQA formats."
 
       - title: "What do you call a dog that is incontrovertibly true? Dogma: Testing LLM Generalization through Humor"
         authors:
-          - Alessio Cocchieri
+          - "*Alessio Cocchieri*"
           - et al.
-        publisher: ACL 2025 (Main)
-        releaseDate: 2025
+        journal: ACL 2025 (Main)
+        date: "2025"
         summary: "We introduce Phunny, a novel benchmark using uncontaminated English puns, revealing that LLMs struggle with generalization even on simple tasks, consistently underperforming the human baseline."
 
       - title: "Can Large Language Models Win the International Mathematical Games?"
         authors:
-          - Alessio Cocchieri
+          - "*Alessio Cocchieri*"
           - et al.
-        publisher: EMNLP 2025 (Main)
-        releaseDate: 2025
+        journal: EMNLP 2025 (Main)
+        date: "2025"
         summary: "We introduce MathGames, a novel multimodal benchmark of age-graded math problems from an international competition, showing that frontier LLMs underperform compared to humans, including 11-year-olds."
 
       - title: "OpenBioNER: Lightweight Open-Domain Biomedical NER Through Entity Type Description"
         authors:
-          - Alessio Cocchieri
+          - "*Alessio Cocchieri*"
           - et al.
-        publisher: NAACL 2025 (Findings)
-        releaseDate: 2025
+        journal: NAACL 2025 (Findings)
+        date: "2025"
         summary: "We introduce a 110M BERT model that leverages descriptions for zero-shot Biomedical NER, outperforming GPT-4o, specialized LLMs, and GLiNER by up to 10% F1."
 
       - title: "To Generate or to Retrieve? On the Effectiveness of Artificial Contexts for Medical Open-Domain Question Answering"
         authors:
           - Giacomo Frisoni
-          - Alessio Cocchieri
+          - "*Alessio Cocchieri*"
           - et al.
-        publisher: ACL 2024 (Main)
-        releaseDate: 2024
+        journal: ACL 2024 (Main)
+        date: "2024"
         summary: "We introduce MedGENIE, the first generate-then-read framework for open-domain medical QA, demonstrating the effectiveness of generated over retrieved contexts and significantly improving LLM RAG performance."
 
     Skills:
-      - name: Strong
-        icon: fa-solid fa-code
-        keywords: "Python, PyTorch, Hugging Face, vLLM, Scikit-Learn, Git, NumPy, Pandas, NLTK, SpaCy"
-
-      - name: Proficient
-        icon: fa-solid fa-laptop
-        keywords: "Java, Docker, MySQL, MongoDB, TensorFlow, LangChain, Object-Oriented Programming"
-
-      - name: Soft Skills
-        icon: fa-solid fa-users
-        keywords: "Communication, Problem-Solving, Teamwork, Quick Learning, Leadership, Adaptability, Public Speaking"
+      - label: Strong
+        details: Python, PyTorch, Hugging Face, vLLM, Scikit-Learn, Git, NumPy, Pandas, NLTK, SpaCy
+      - label: Proficient
+        details: Java, Docker, MySQL, MongoDB, TensorFlow, LangChain, Object-Oriented Programming
+      - label: Soft Skills
+        details: Communication, Problem-Solving, Teamwork, Quick Learning, Leadership, Adaptability, Public Speaking
 
     Languages:
-      - name: Italian
-        summary: "Native speaker"
-
-      - name: English
-        summary: "Professional fluency"
-
-      - name: Spanish
-        summary: "Basic proficiency"
+      - label: Italian
+        details: Native speaker
+      - label: English
+        details: Professional fluency
+      - label: Spanish
+        details: Basic proficiency
