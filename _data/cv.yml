@@ -119,17 +119,11 @@ cv:
         summary: "We introduce MedGENIE, the first generate-then-read framework for open-domain medical QA, demonstrating the effectiveness of generated over retrieved contexts and significantly improving LLM RAG performance."
 
     Skills:
-      - label: Strong
-        details: Python, PyTorch, Hugging Face, vLLM, Scikit-Learn, Git, NumPy, Pandas, NLTK, SpaCy
-      - label: Proficient
-        details: Java, Docker, MySQL, MongoDB, TensorFlow, LangChain, Object-Oriented Programming
-      - label: Soft Skills
-        details: Communication, Problem-Solving, Teamwork, Quick Learning, Leadership, Adaptability, Public Speaking
+      - "**Strong:** Python, PyTorch, Hugging Face, vLLM, Scikit-Learn, Git, NumPy, Pandas, NLTK, SpaCy"
+      - "**Proficient:** Java, Docker, MySQL, MongoDB, TensorFlow, LangChain, Object-Oriented Programming"
+      - "**Soft Skills:** Communication, Problem-Solving, Teamwork, Quick Learning, Leadership, Adaptability, Public Speaking"
 
     Languages:
-      - label: Italian
-        details: Native speaker
-      - label: English
-        details: Professional fluency
-      - label: Spanish
-        details: Basic proficiency
+      - "**Italian:** Native speaker"
+      - "**English:** Professional fluency"
+      - "**Spanish:** Basic proficiency"
