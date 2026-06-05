@@ -12,7 +12,7 @@ profile:
     <p>University of Bologna</p>
     <p>Bologna, Italy</p>
 
-selected_papers: true
+selected_papers: false
 social: true
 
 announcements:
