@@ -1,16 +1,14 @@
 ---
 layout: about
-title: Alessio Cocchieri
+title: about
 permalink: /
-subtitle: NLP PhD Researcher · <a href="https://disi-unibo-nlp.github.io/">UniboNLP</a> · University of Bologna
+subtitle:
 
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false
-  more_info: >
-    <p>University of Bologna</p>
-    <p>Bologna, Italy</p>
+  image_circular: true
+  more_info:
 
 selected_papers: false
 social: true
@@ -26,6 +24,14 @@ latest_posts:
   limit: 3
 ---
 
+<style>
+  .profile { max-width: 180px; }
+</style>
+
+# Alessio Cocchieri
+
+<p style="font-size:1.1rem;color:#666;margin-top:-0.4rem;">PhD Researcher in NLP · <a href="https://disi-unibo-nlp.github.io/">UniboNLP</a> · University of Bologna</p>
+
 I am a last-year PhD student in Natural Language Processing at <a href="https://disi-unibo-nlp.github.io/">UniboNLP</a>, Department of Computer Science and Engineering, University of Bologna, advised by <a href="https://scholar.google.com/citations?user=QOfSGKkAAAAJ&hl=it">Prof. Gianluca Moro</a>. I hold a BSc and MSc in Computer Science and Artificial Intelligence, both with honors, from the University of Bologna.
 
-My research spans <strong>LLM evaluation and benchmarking</strong>, <strong>knowledge distillation</strong>, and <strong>low-resource NLP</strong>, with a particular focus on high-stakes domains such as medicine. I have published at ACL, EMNLP, NAACL, and EACL, and completed two research internships at <strong>IBM Research</strong> (Dublin).
+I specialize in <strong>LLM evaluation</strong> and <strong>knowledge distillation</strong> for <strong>low-resource NLP</strong>, with applications to high-stakes domains like medicine. I have 9+ publications at ACL, EMNLP, NAACL, and EACL, and completed two research internships at <strong>IBM Research</strong> (Dublin). I am an active reviewer for ARR and top-tier ML conferences like NeurIPS.

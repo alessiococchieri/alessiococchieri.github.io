@@ -11,10 +11,9 @@ cv:
 
   sections:
     About Me:
-      - Last-year NLP PhD candidate (ending Nov 2026) at [UniboNLP](https://disi-unibo-nlp.github.io/),
-        with 9+ publications at ACL, EMNLP, NAACL, and EACL. I specialize in LLM evaluation and
-        knowledge distillation for low-resource NLP, with applications to high-stakes domains like
-        medicine. Active reviewer for ARR and top-tier ML conferences like NeurIPS.
+      - bullet: "Last-year NLP PhD candidate (ending Nov 2026) at [UniboNLP](https://disi-unibo-nlp.github.io/), with 9+ publications at ACL, EMNLP, NAACL, and EACL."
+      - bullet: "I specialize in LLM evaluation and knowledge distillation for low-resource NLP, with applications to high-stakes domains like medicine."
+      - bullet: "Active reviewer for ARR and top-tier ML conferences like NeurIPS."
 
     Education:
       - institution: University of Bologna
