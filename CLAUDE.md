@@ -4,65 +4,123 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 @AGENTS.md
 
-The import above (`AGENTS.md`, which itself defers to `.github/copilot-instructions.md` and `docs/BOUNDARIES.md`) is the canonical short entry point: ownership boundaries, the validated command set, and PR-routing rules. Keep `AGENTS.md` short and ecosystem-neutral — put Claude-specific or longer-form guidance here instead. Everything below is the cross-repo "big picture" that those files assume but don't spell out.
+The import above (`AGENTS.md`, which itself defers to `.github/copilot-instructions.md` and `docs/BOUNDARIES.md`) is the canonical short entry point: ownership boundaries, the validated command set, and PR-routing rules. Everything below is Claude-specific context that those files assume but don't spell out.
 
 ## What this repo is
 
-`al-folio` v1.x is a **thin Jekyll starter**, not a theme. It owns only: starter wiring (`Gemfile`, `_config.yml`, `_data/featured_plugins.yml`), example content (`_pages`, `_posts`, `_projects`, `_news`, `_teachings`, `_books`, `_bibliography`), docs (`docs/`), cross-gem integration tests (`test/integration_*.sh`), and visual/parity tests (`test/visual/`). **All runtime, layouts, includes, Sass, tags, filters, and feature JS live in versioned gems**, published independently on RubyGems. `docs/BOUNDARIES.md` is the authoritative area→gem ownership table.
+This is **Alessio Cocchieri's personal academic website**, deployed at `https://alessiococchieri.github.io`. It is a customized fork of the `al-folio` v1.x Jekyll starter — not the upstream al-folio project itself.
 
-The biggest recurring mistake is editing runtime here. If a change is layout/include/tag/filter/feature-behavior, it belongs in the owning gem (see routing below), not in this repo.
+Key distinction from upstream: the site's `baseurl` is blank (deployed at root). All dev commands below reflect this; do **not** use `--baseurl /al-folio`.
 
-## The plugin ecosystem (read this before routing any change)
+The site owner is an NLP PhD researcher at UniboNLP, University of Bologna, working on LLM evaluation, benchmarking, and low-resource NLP.
 
-The `al-*` / `al_folio_*` gems are developed as **sibling repos on disk** at `~/Documents/dev/al-org/<repo>` (repo dir uses hyphens, e.g. `al-folio-core`; gem/plugin id uses underscores, e.g. `al_folio_core`). To test a gem fix against this site, point the `Gemfile` at it: `gem "al_folio_core", path: "../al-folio-core"` (or `git:`/`branch:`), then `bundle install`.
+## Personal content locations
 
-**`al_folio_core` is the hub.** `_config.yml` sets `theme: al_folio_core`; the gem ships every base `_layouts/*.liquid` and `_includes/*.liquid`, the base theme JS/CSS, and the `details`/`file_exists` tags + `hideCustomBibtex`/`remove_accents` filters. Crucially, its `_includes/plugins/*.liquid` are **thin wrappers that call custom Liquid tags defined by sibling gems**. So a feature renders only when _both_ (a) its gem is present in the plugin list, and (b) the relevant flag is on. The wrapper→tag→gem delegation map:
+When asked to update the site content, edit these files:
 
-| Wrapper / call site       | Tag                                                 | Gem                                                                            |
-| ------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------ |
-| search assets             | `al_search_assets`                                  | `al_search` (Cmd-K ninja-keys palette; index built at build time from content) |
-| comments                  | `al_comments`                                       | `al_comments` (Giscus + Disqus, front-matter gated)                            |
-| cookie banner             | `al_cookie_styles` / `al_cookie_scripts`            | `al_cookie` (consent-mode gating of analytics)                                 |
-| icon `<link>`s            | `al_icons_styles`                                   | `al_icons` (FontAwesome/Academicons/Scholar Icons from CDN)                    |
-| analytics                 | `al_analytics_scripts`                              | `al_analytics` (GA/Cronitor/Pirsch/OpenPanel)                                  |
-| math                      | `al_math_styles` / `al_math_scripts`                | `al_math` (MathJax, pseudocode.js, TikZJax)                                    |
-| charts                    | `al_charts_scripts`                                 | `al_charts` (Mermaid/Chart.js/ECharts/Plotly/Vega/Leaflet/diff2html)           |
-| image tools               | `al_img_tools_styles` / `al_img_tools_scripts`      | `al_img_tools` (zoom, lightbox, sliders, galleries)                            |
-| newsletter                | `al_newsletter_form` / `al_newsletter_scripts`      | `al_newsletter` (Loops.so signup)                                              |
-| `layout: cv`              | `al_folio_cv_render`                                | `al_folio_cv` (RenderCV YAML + JSONResume)                                     |
-| `layout: distill`         | `al_folio_distill_render`                           | `al_folio_distill` (vendored, hash-pinned distillpub runtime)                  |
-| citation badges           | `google_scholar_citations` / `inspirehep_citations` | `al_citations`                                                                 |
-| external posts            | (generator, no tag)                                 | `al_ext_posts` (RSS/URL ingestion → synthetic posts)                           |
-| legacy Bootstrap behavior | (opt-in assets)                                     | `al_folio_bootstrap_compat`                                                    |
-| upgrade/audit CLI         | `bundle exec al-folio …`                            | `al_folio_upgrade`                                                             |
+| Content type         | File(s)                                         |
+| -------------------- | ----------------------------------------------- |
+| Homepage bio         | `_pages/about.md`                               |
+| Publications list    | `_bibliography/papers.bib`                      |
+| CV / resume (JSON)   | `assets/json/resume.json`                       |
+| CV page (RenderCV)   | `assets/rendercv/` + `_pages/cv.md`             |
+| News / announcements | `_news/*.md`                                    |
+| Blog posts           | `_posts/*.md`                                   |
+| Projects             | `_projects/*.md`                                |
+| Teaching             | `_teachings/*.md`                               |
+| Site-wide settings   | `_config.yml` (name, social links, feature flags, analytics) |
+| Social links / theme | `_config.yml` under `social:` / `theme:` blocks |
 
-Architectural facts that span repos:
+> **Note:** `assets/json/resume.json` currently contains Albert Einstein placeholder data and needs to be populated with Alessio's actual CV data.
 
-- **Feature gating is two-layered.** Site-wide config flags (`search_enabled`, `enable_math`, `enable_cookie_consent`, `enable_darkmode`, `al_folio.features.cv.enabled`, `al_folio.features.distill.enabled`) _and_ per-page front matter (`images:`, `tikzjax`, `chart.*`, `mermaid.*`, `giscus_comments`, `layout: distill|cv`). A tag emits an empty string when its gem/flag/config is absent — features fail silently, not loudly.
-- **Most feature gems are `AssetsGenerator`s** that inject their JS/CSS as Jekyll static files at build time _only when enabled_. These assets are not committed into the site, and several use pinned-CDN URLs + SRI hashes read from `_config.yml`'s `third_party_libraries:` block.
-- **Two parallel lists must stay in sync:** `Gemfile` (pinned versions, e.g. `al_folio_core '= 1.0.9'`) and `_config.yml`'s `plugins:` list. Adding/removing a plugin means editing both.
-- **The v1 config contract** (`al_folio.api_version: 1`, `style_engine: tailwind`, `tailwind.{version,css_entry,preflight}`, `distill.{engine,source}`) is enforced twice: as build-time warnings/violations by `al_folio_core`'s `:after_init` hook, and as **blocking** findings by `al-folio upgrade audit`. Don't remove these keys.
-- **Local overrides are allowed but tracked.** A site may shadow a gem-owned `_layouts/_includes/_sass` file locally. When it does, `al-folio upgrade overrides audit` records owner gem + version + upstream/local SHA256 in `.al-folio-overrides.yml`; that file must be committed so future `bundle update`s can flag upstream drift. Shared fixes should be ported to the owning gem instead.
-- **Bootstrap compat is opt-in and time-boxed.** `al_folio.compat.bootstrap.enabled: true` (default false) activates `al_folio_bootstrap_compat`. Supported through v1.2, deprecated v1.3, removed in v2.0 — migrate content off `data-toggle`/Bootstrap classes before then.
-
-## Daily dev loop (not in the AGENTS.md command set)
+## Dev commands (for this site)
 
 ```bash
-bundle install                                # ruby gems
-bundle exec jekyll serve                      # dev server → http://localhost:4000/al-folio/  (NOTE baseurl)
-bundle exec jekyll build --baseurl /al-folio  # production-style build to _site/
-bash test/integration_distill.sh             # run ONE integration test (any of the five)
-npm run test:visual:update                    # refresh playwright snapshots after intentional UI change
-bundle exec al-folio upgrade apply --safe     # deterministic codemods (font-weight-* → font-*, remote→local URLs)
-bundle exec al-folio upgrade overrides diff <path>    # then `overrides accept <path>` to acknowledge an override
+bundle install                    # install ruby gems
+bundle exec jekyll serve          # dev server → http://localhost:4000/
+bundle exec jekyll build          # build to _site/
+npm ci                            # install node tools
+npm run lint:prettier             # check formatting
+npm run lint:style-contract       # verify starter boundary rules
 ```
 
-`bin/setup-python-deps` installs the optional Python toolchain in `requirements.txt` (`nbconvert` for `jekyll-jupyter-notebook`, `rendercv[full]` for CV rendering, `scholarly` for `bin/update_scholar_citations.py`). Responsive-image generation (`imagemagick.enabled: true`) needs ImageMagick `convert` on PATH. `bin/deploy` is the manual `gh-pages` build+purgecss+force-push path (CI normally deploys).
+Running a specific integration test:
 
-## Docker serving model (v1-specific)
+```bash
+bash test/integration_distill.sh         # Distill layout
+bash test/integration_plugin_toggles.sh  # plugin enable/disable
+bash test/integration_comments.sh        # Giscus/Disqus
+bash test/integration_bootstrap_compat.sh
+bash test/integration_upgrade_cli.sh
+```
 
-`docker compose up -d` bind-mounts the repo to `/srv/jekyll` and runs `bin/entry_point.sh`, which serves with `--force_polling --destination /tmp/_site`. The build output deliberately goes to **container-local `/tmp/_site`, not the bind-mounted `_site`** — writing `_site` back across the host bind mount caused write deadlocks. The container also `inotifywait`s `_config.yml` and restarts Jekyll on change (config edits aren't hot-reloaded by `--watch`). Verify with the `/al-folio` baseurl: `curl -fsS http://127.0.0.1:8080/al-folio/`. `docker-compose-slim.yml` pulls a prebuilt `:slim` image instead of building locally.
+Visual regression (Playwright):
 
-## CI gates and the style contract
+```bash
+npx playwright install chromium webkit
+npm run test:visual
+npm run test:visual:update   # refresh snapshots after intentional UI change
+```
 
-`npm run lint:style-contract` (`test/style_contract.js`) is the automated enforcement of the thin-starter boundary, and it will fail CI if you cross it: the starter must **not** define `build:css`/`build:tailwind` npm scripts, must **not** own `_includes`/`_layouts`/`_sass`/`_scripts`/`assets/tailwind`/`tailwind.config.js`/icon-font artifacts, must keep `theme: al_folio_core` and the required plugins in `_config.yml`, and must keep the `third_party_libraries` SRI pins and `al_math` Gemfile pin. Other gates: `unit-tests.yml` (style contract + the five integration scripts), `visual-regression.yml` (Playwright chromium+webkit, diffs candidate against a v0.16.3 baseline served on :4100 via `BASELINE_URL`), `upgrade-check.yml` (`al-folio upgrade audit`), `prettier.yml`. Prettier uses `@shopify/prettier-plugin-liquid` with `printWidth: 150`; run `npm run lint:prettier` before pushing.
+Upgrade tooling:
+
+```bash
+bundle exec al-folio upgrade audit
+bundle exec al-folio upgrade apply --safe   # deterministic codemods
+bundle exec al-folio upgrade report
+```
+
+## What this repo owns vs what the gems own
+
+**Edit here:** `_config.yml`, `_pages/`, `_posts/`, `_projects/`, `_news/`, `_teachings/`, `_books/`, `_bibliography/`, `_data/`, `assets/`, `docs/`, and integration/visual tests.
+
+**Do not edit here:** layouts, includes, Sass, JS feature code, and Liquid tags — those live in versioned gems. If a layout or include needs fixing, the fix belongs in the owning gem (see the plugin table in `docs/BOUNDARIES.md`). Local site overrides are allowed but must be tracked: run `bundle exec al-folio upgrade overrides audit` and commit `.al-folio-overrides.yml`.
+
+## The plugin ecosystem
+
+**`al_folio_core` is the hub.** `_config.yml` sets `theme: al_folio_core`; the gem ships all base `_layouts/*.liquid`, `_includes/*.liquid`, base JS/CSS, and core Liquid tags/filters. Sibling gems provide feature extensions via thin wrapper includes in `_includes/plugins/*.liquid`.
+
+Feature gating is two-layered: site-wide flags in `_config.yml` (e.g. `enable_math`, `search_enabled`, `enable_darkmode`) **and** per-page front matter (`tikzjax`, `chart.*`, `mermaid.*`, `giscus_comments`). A disabled feature emits an empty string — it fails silently, not loudly.
+
+Two lists must stay in sync when adding or removing a plugin: `Gemfile` (pinned version) and `_config.yml`'s `plugins:` list.
+
+| Feature               | Gem                    |
+| --------------------- | ---------------------- |
+| Search (Cmd-K)        | `al_search`            |
+| Comments              | `al_comments`          |
+| Cookie consent        | `al_cookie`            |
+| Icons (FA/Academicons)| `al_icons`             |
+| Analytics             | `al_analytics`         |
+| Math (MathJax/TikZ)   | `al_math`              |
+| Charts                | `al_charts`            |
+| Image tools           | `al_img_tools`         |
+| Newsletter            | `al_newsletter`        |
+| CV layout             | `al_folio_cv`          |
+| Distill layout        | `al_folio_distill`     |
+| Citation badges       | `al_citations`         |
+| External posts        | `al_ext_posts`         |
+| Bootstrap compat      | `al_folio_bootstrap_compat` |
+| Upgrade/audit CLI     | `al_folio_upgrade`     |
+
+## CI gates
+
+| Workflow                | What it checks                                            |
+| ----------------------- | --------------------------------------------------------- |
+| `unit-tests.yml`        | Style contract + all five integration scripts             |
+| `visual-regression.yml` | Playwright chromium+webkit against baseline               |
+| `upgrade-check.yml`     | `al-folio upgrade audit`                                  |
+| `prettier.yml`          | Prettier (`@shopify/prettier-plugin-liquid`, `printWidth: 150`) |
+| `deploy.yml`            | Production build and GitHub Pages push                    |
+
+Run `npm run lint:prettier` before pushing. The style contract (`npm run lint:style-contract`) will fail CI if starter files stray into gem-owned territory (adding `build:css` npm scripts, owning `_includes/`, `_layouts/`, `_sass/`, etc.).
+
+## Docker (optional local dev)
+
+```bash
+docker compose up -d
+curl -fsS http://127.0.0.1:8080/ >/dev/null   # verify (blank baseurl → root path)
+docker compose logs --tail=80
+docker compose down
+```
+
+Build output goes to container-local `/tmp/_site`, not the bind-mounted `_site/`, to avoid write deadlocks. The container also watches `_config.yml` and restarts Jekyll on change.
