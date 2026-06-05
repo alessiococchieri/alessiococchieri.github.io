@@ -2,7 +2,7 @@
 layout: post
 title: Two long papers accepted at ACL 2026!
 date: 2026-04-07 09:00:00+0100
-inline: false
+inline: true
 related_posts: false
 ---
 
