@@ -23,5 +23,9 @@ module.exports = {
     // and page chrome (scroll-progress bar, ToC) bleeds through a zoomed image.
     "medium-zoom-overlay",
     "medium-zoom-image--opened",
+    // CV date/badge overrides in assets/css/al-folio-cv.css
+    "date-column",
+    "iconlocation",
+    "list-group-item",
   ],
 };
