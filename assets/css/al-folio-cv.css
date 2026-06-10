@@ -59,6 +59,8 @@ ul.timeline li::before {
   font-size: 0.85rem !important;
   padding: 0 !important;
   box-shadow: none !important;
+  display: block !important;
+  white-space: normal !important;
 }
 i.iconlocation {
   display: none !important;
