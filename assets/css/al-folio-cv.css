@@ -149,8 +149,10 @@ ul.timeline li::before {
   top: -0.5rem;
 }
 
-/* Remove colored date badges and location pin icon */
-.date-column .badge {
+/* Remove colored date badges and location pin icon.
+   Selector specificity must match/exceed al-folio-cv's
+   `.cv .card .list-group-item .badge` (0,4,0) for the cascade to apply. */
+.cv .card .list-group-item .date-column .badge {
   background-color: transparent !important;
   color: #666 !important;
   font-weight: 500 !important;
