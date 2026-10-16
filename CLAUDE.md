@@ -16,22 +16,18 @@ The site owner is an NLP PhD researcher at UniboNLP, University of Bologna, work
 
 ## Personal content locations
 
+The al-folio demo content (blog posts, projects, teaching, books, Einstein placeholder data) has been removed; the site only has about, publications, news and CV pages.
+
 When asked to update the site content, edit these files:
 
-| Content type         | File(s)                                                      |
-| -------------------- | ------------------------------------------------------------ |
-| Homepage bio         | `_pages/about.md`                                            |
-| Publications list    | `_bibliography/papers.bib`                                   |
-| CV / resume (JSON)   | `assets/json/resume.json`                                    |
-| CV page (RenderCV)   | `assets/rendercv/` + `_pages/cv.md`                          |
-| News / announcements | `_news/*.md`                                                 |
-| Blog posts           | `_posts/*.md`                                                |
-| Projects             | `_projects/*.md`                                             |
-| Teaching             | `_teachings/*.md`                                            |
-| Site-wide settings   | `_config.yml` (name, social links, feature flags, analytics) |
-| Social links / theme | `_config.yml` under `social:` / `theme:` blocks              |
-
-> **Note:** `assets/json/resume.json` currently contains Albert Einstein placeholder data and needs to be populated with Alessio's actual CV data.
+| Content type         | File(s)                                                                                      |
+| -------------------- | -------------------------------------------------------------------------------------------- |
+| Homepage bio         | `_pages/about.md`                                                                            |
+| Publications list    | `_bibliography/papers.bib`                                                                   |
+| CV (PDF)             | `assets/pdf/Personal_CV_Alessio_Cocchieri.pdf` (`/cv/` redirects to it via `_pages/cv.html`) |
+| News / announcements | `_news/*.md`                                                                                 |
+| Site-wide settings   | `_config.yml` (name, social links, feature flags, analytics)                                 |
+| Social links / theme | `_config.yml` under `social:` / `theme:` blocks                                              |
 
 ## Dev commands (for this site)
 
@@ -47,9 +43,7 @@ npm run lint:style-contract       # verify starter boundary rules
 Running a specific integration test:
 
 ```bash
-bash test/integration_distill.sh         # Distill layout
 bash test/integration_plugin_toggles.sh  # plugin enable/disable
-bash test/integration_comments.sh        # Giscus/Disqus
 bash test/integration_bootstrap_compat.sh
 bash test/integration_upgrade_cli.sh
 ```
@@ -106,7 +100,7 @@ Two lists must stay in sync when adding or removing a plugin: `Gemfile` (pinned 
 
 | Workflow                | What it checks                                                  |
 | ----------------------- | --------------------------------------------------------------- |
-| `unit-tests.yml`        | Style contract + all five integration scripts                   |
+| `unit-tests.yml`        | Style contract + integration scripts in `test/`                 |
 | `visual-regression.yml` | Playwright chromium+webkit against baseline                     |
 | `upgrade-check.yml`     | `al-folio upgrade audit`                                        |
 | `prettier.yml`          | Prettier (`@shopify/prettier-plugin-liquid`, `printWidth: 150`) |
