@@ -10,6 +10,7 @@ nav_order: 2
 <!-- _pages/publications.md -->
 
 <style>
+  .publications .abbr picture { display: block; text-align: center; }
   .publications .preview { max-height: 190px; width: auto; max-width: 100%; display: block; margin: 0 auto; pointer-events: none; }
   .topic-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
   .topic-filters button {

@@ -28,6 +28,7 @@ latest_posts:
   .profile { max-width: 180px; }
   .subtitle-line { font-size: 1.1rem; margin-top: -0.4rem; opacity: 0.7; }
   .publications::before { content: "* denotes equal contribution."; display: block; font-size: 0.875rem; opacity: 0.7; margin: -1.4rem 0 1rem; }
+  .publications .abbr picture { display: block; text-align: center; }
   .publications .preview { max-height: 190px; width: auto; max-width: 100%; display: block; margin: 0 auto; pointer-events: none; }
 </style>
 
