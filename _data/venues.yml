@@ -7,3 +7,43 @@
 
 "Vision":
   color: "#009f36"
+
+"EMNLP 2026":
+  url: https://www.aclweb.org/
+  color: "#00369f"
+
+"ACL 2026":
+  url: https://www.aclweb.org/
+  color: "#b31b1b"
+
+"JSS 2026":
+  url: https://www.sciencedirect.com/journal/journal-of-systems-and-software
+  color: "#0f766e"
+
+"ESWA 2026":
+  url: https://www.sciencedirect.com/journal/expert-systems-with-applications
+  color: "#e9711c"
+
+"EACL 2026":
+  url: https://www.aclweb.org/
+  color: "#00845a"
+
+"ACL 2025":
+  url: https://www.aclweb.org/
+  color: "#b31b1b"
+
+"ECAI 2025":
+  url: https://www.eurai.org/
+  color: "#d97706"
+
+"EMNLP 2025":
+  url: https://www.aclweb.org/
+  color: "#00369f"
+
+"NAACL 2025":
+  url: https://www.aclweb.org/
+  color: "#6f42c1"
+
+"ACL 2024":
+  url: https://www.aclweb.org/
+  color: "#b31b1b"
